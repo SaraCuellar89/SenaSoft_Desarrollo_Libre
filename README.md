@@ -16,13 +16,13 @@
 <h2>🧩 Documentacion</h2>
 <ul>
   <li>Mockups: <a href="https://www.figma.com/design/0qczdKY9qhqgbETqeMMNKW/Figma-basics?node-id=0-286&p=f&t=sN7QphLk5N2oPatb-0">Figma</a></li>
-  <li>Diagramacion: <a href="https://www.figma.com/design/0qczdKY9qhqgbETqeMMNKW/Figma-basics?node-id=0-286&p=f&t=sN7QphLk5N2oPatb-0"></li>
+  <li>Diagramacion y Manual de uso: <a href="https://github.com/SaraCuellar89/SenaSoft_Desarrollo_Libre/tree/main/Documentacion">Documentacion</li>
 </ul>
 
 
 <h1>¡Ejecuta el proyecto tu mismo!</h1>
 <h2>Clona el proyecto:</h2>
-<pre><code>git clone https://github.com/Android3-ev/simulation-twitter.git</code></pre>
+<pre><code>git clone https://github.com/SaraCuellar89/SenaSoft_Desarrollo_Libre.git</code></pre>
 
 <h2>Ejecuta el servidor:</h2>
 <p>Descarga las dependencias necesarias:</p>
