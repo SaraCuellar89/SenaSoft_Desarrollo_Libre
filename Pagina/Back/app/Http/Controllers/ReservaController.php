@@ -4,14 +4,28 @@ namespace App\Http\Controllers;
 
 use App\Models\Reserva;
 use App\Models\User;
+use App\Models\Vuelos;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+
+
 
 class ReservaController extends Controller
 {
+    // METODO PARA LISTAR LAS RESERVAS
     public function index()
     {
         $reserva = Reserva::all();
+
+        if ($reserva->isEmpty()) {
+            return response()->json(
+                [
+                    'message' => 'NO HAY RESERVAS DISPONIBLES'
+                ]
+            );
+        }
 
         return response()->json(
             [
@@ -21,22 +35,26 @@ class ReservaController extends Controller
         );
     }
 
+    // METODO PARA VER TODAS LA RESERVAS RELACIONADAS CON LOS USUARIOS
     public function reservaUser()
     {
+        // OBTENEMOS EL USUARIO, EL VUELO Y EL ASIENTO RELACIONADO
         $reserva = Reserva::with(['user', 'vuelo', 'asiento'])->get();
 
         return response()->json(['data' => $reserva]);
     }
 
-
+    // METODO PARA VER LAS RESERVAS DE UN USUARIO PARCIAL
     public function reservaParcial(string $id)
     {
+        // VERIFICAMOS QUE HAYA UN USUARIO
         $reservaUser = Reserva::find($id);
 
         if (!$reservaUser) {
-            return response()->json(['message' => 'NO SE ENCONTRÓ UNA RESERVA']);
+            return response()->json(['message' => 'NO SE ENCONTRÓ NINGUNA RESERVA']);
         }
 
+        // SI HAY UN USUARIO BUSCAMOS LAS RESERVAS DE ACUERDO A ELLO
         $reserva = Reserva::where('user_id', $id)
             ->with(['user', 'vuelo', 'asiento'])->get();
 
@@ -51,17 +69,14 @@ class ReservaController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'user_id' => 'required',
                 'vuelo_id' => 'required|exists:vuelos,id',
                 'asiento_id' => 'required|unique:reservas,asiento_id,|exists:asientos,id',
                 'nombre_completo' => 'required|string',
                 'tipo_documento' => 'required|exists:tipos_documentos,id',
                 'documento' => 'required|min:8|max:11',
-                'email' => "required|email|exists:users,email",
+                'email' => "required|email|unique:users,email",
                 'celular' => 'required|string|min:10',
                 'metodo_id' => 'required|exists:metodos_pagos,id',
-                'estado' => 'required|string|in:"confirmado","pendiente","cancelado"',
-                'codigo' => 'required|string|unique:reservas,codigo',
                 'cantidad_reserva' => 'required|numeric|min:1|max:5'
             ]
         );
@@ -70,9 +85,37 @@ class ReservaController extends Controller
             return response()->json(['errors' => $validator->errors()]);
         }
 
+        $vuelo = Vuelos::find($request->vuelo_id);
+
+        // if ($vuelo->fecha_salida < now()) {
+        //     return response()->json(['message' => 'TU RESERVA YA CADUCÓ']);
+        // }
+
+        // DIVIDIMOS EL NOMBRE COMPLETO PARA GUARDAR EL USUARIO EN CASO DE QUE NO ESTÉ AUTENTICADO
+        $partes = explode(" ", trim($request->nombre_completo));
+        $primer_nombre = $partes[0];
+        $segundo_nombre = $partes[1] ?? '';
+        $primer_apellido = $partes[2] ?? '';
+        $segundo_apellido = $partes[3] ?? '';
+
+        $user = User::firstOrCreate([
+            'rol_id' => 2,
+            'name' => $primer_nombre . " " . $segundo_nombre,
+            'primer_apellido' => $primer_apellido,
+            'segundo_apellido' => $segundo_apellido,
+            'genero' => '',
+            'tipo_id' => $request->tipo_documento,
+            'documento' => $request->documento,
+            'celular' => $request->celular,
+            'email' => $request->email,
+            'password' => Hash::make('12345678')
+        ]);
+
+        $codigo = strtoupper(Str::random(8));
+
         $reserva = Reserva::create(
             [
-                'user_id' => $request->user_id,
+                'user_id' => $user->id,
                 'vuelo_id' => $request->vuelo_id,
                 'asiento_id' => $request->asiento_id,
                 'nombre_completo' => $request->nombre_completo,
@@ -82,8 +125,8 @@ class ReservaController extends Controller
                 'celular' => $request->celular,
                 'metodo_id' => $request->metodo_id,
                 'monto' => $request->monto,
-                'estado' => $request->estado,
-                'codigo' => $request->codigo,
+                'estado' => 'pendiente',
+                'codigo' => $codigo,
                 'cantidad_reserva' => $request->cantidad_reserva,
             ]
         );

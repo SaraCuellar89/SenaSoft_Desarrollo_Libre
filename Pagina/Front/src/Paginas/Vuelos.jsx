@@ -8,7 +8,7 @@ import '../Paginas/css/Vuelos.css'
 
 const Vuelos = () => {
 
-    //Listar todos los vuelos
+    // ================ Listar todos los vuelos ================ 
     const [info_vuelos, setInfo_vuelos] = useState([])
 
     useEffect(() => {
@@ -24,7 +24,7 @@ const Vuelos = () => {
 
 
 
-    //Buscar vuelos por ida y vuelta
+    // ================ Buscar vuelos por ida y vuelta ================
     const [tipo_vuelo, setTipo_vuelo] = useState('')
 
     const Buscar_Tipo_vuelo = async (e) => {
@@ -44,9 +44,8 @@ const Vuelos = () => {
 
 
 
-    //Buscar vuelos por ida y vuelta
+    // ================ Buscar vuelos por origen ================ 
     const [origen, setOrigen] = useState('')
-    const [destino, setDestino] = useState('')
 
     const Buscar_Origen = async (e) => {
         try{
@@ -61,6 +60,11 @@ const Vuelos = () => {
             console.error('Error: ' + error)
         }
     }
+
+
+
+    // ================ Buscar vuelos por destino ================ 
+    const [destino, setDestino] = useState('')
 
     const Buscar_Destino = async (e) => {
         try{
@@ -78,12 +82,7 @@ const Vuelos = () => {
 
 
 
-
-
-
-
-
-
+    // ================ Ocultar o Ver el menu ================
     const [ver_menu, setVer_menu] = useState(false)
 
     const Mostrar_Menu = () => {
@@ -95,6 +94,9 @@ const Vuelos = () => {
         }
     }
 
+    
+
+    // ================ Renderizado ================
     return(
         <div className="contenedor_vuelos">
             {ver_menu === true ? 

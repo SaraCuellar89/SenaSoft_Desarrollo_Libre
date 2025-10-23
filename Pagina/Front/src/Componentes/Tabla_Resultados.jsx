@@ -6,7 +6,7 @@ const Tabla_Resultados = ({info_vuelos}) => {
 
     return(
         <div className="contenedor_tabla_resultados">
-            <h1>Ida - Regreso</h1>
+            <h1>Busqueda</h1>
             <table>
                 {info_vuelos === '' || info_vuelos === 0 ?
                 (
@@ -15,7 +15,7 @@ const Tabla_Resultados = ({info_vuelos}) => {
                 (
                     <>
                         {info_vuelos.map((v) => (
-                            <Link to={'/Asientos'}>
+                            <Link to={`/Asientos/${v.id}`}>
                                 <tr>
                                     <td>{v.tipo_vuelo}</td>
                                     <td>{v.fecha_salida}</td>
