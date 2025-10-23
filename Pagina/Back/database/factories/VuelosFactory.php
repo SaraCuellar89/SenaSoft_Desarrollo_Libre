@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Avion;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,7 +19,7 @@ class VuelosFactory extends Factory
     public function definition(): array
     {
         $start_time = $this->faker->dateTimeBetween(now(), "+1 week");
-        $end_time = clone ($start_time)->modify("+" . rand(1, 5) . " day");
+        $end_time = Carbon::instance($start_time)->addHour(rand(1, 3));
         return [
             'avion_id' => Avion::inRandomOrder()->first()->id,
             'image' => '',

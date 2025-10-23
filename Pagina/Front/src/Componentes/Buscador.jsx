@@ -2,52 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import '../Componentes/css/Buscador.css'
 import ejemplo from '../Componentes/imagenes/colombia_2.jpg'
-import { useNavigate } from "react-router-dom";
 
-const Buscador = () => {
-
-    const navigate = useNavigate()
-
-    //Listar 3 vuelos por defecto
-    const [vuelos, setVuelos] = useState([])
-
-    useEffect(() => {
-
-        const Obtener_Vuelos = async () => {
-            const res = await fetch('http://127.0.0.1:8000/api/vuelos')
-            const datos = await res.json()
-
-            setVuelos(datos.data.slice(1, 4))
-        }
-
-        Obtener_Vuelos()
-    }, [])
-
-
-    //Buscar vuelos por su origen
-    const [nombre, setNombre] = useState('')
-
-    const Buscar_Vuelos = async (e) => {
-
-        try{
-            const res = await fetch(`http://127.0.0.1:8000/api/vuelos?origen=${nombre}`, {
-                method: 'GET'
-            })
-            const datos = await res.json()
-            setVuelos(datos.data)
-            
-        }
-        catch(error){
-            console.error('Error: ' + error)
-        }
-    }
-
-    
-
-    const Recargar_Pagina = () => {
-        navigate(0)
-    }
-
+const Buscador = ({nombre, setNombre, Recargar_Pagina, vuelos, Buscar_Vuelos}) => {
     return(
         <div className="contenedor_buscador">
             <div>

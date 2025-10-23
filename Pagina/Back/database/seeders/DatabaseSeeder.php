@@ -18,11 +18,13 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
+        // LLAMADA A TODOS LOS SEEDER (DATOS FALSOS)
         $this->call(
             [
                 RolSeeder::class,
                 TiposDocumentoSeeder::class,
                 MetodosPagoSeeder::class,
+                AsientoSeeder::class,
                 AvionSeeder::class,
                 VueloSeeder::class
             ]
