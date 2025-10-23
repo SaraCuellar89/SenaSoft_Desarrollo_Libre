@@ -1,0 +1,25 @@
+.contenedor_carrusel{
+    margin-top: 20vh;
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    overflow: hidden;
+}
+
+.caja_carrusel, .caja_carrusel_2{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.img_carrusel{
+    width: 70%;
+    height: 70%;
+    object-fit: cover;
+    border-radius: 10px;
+    filter: var(--sombra_1);
+}

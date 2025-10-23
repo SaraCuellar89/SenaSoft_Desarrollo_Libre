@@ -1,0 +1,71 @@
+.contenedor_lista_asientos{
+    margin-top: 20vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+}
+
+.contenedor_lista_asientos > h1{
+    font-weight: 500;
+    font-size: 50px;
+}
+
+.contenedor_lista_asientos > div{
+    min-width: 40%;
+
+    
+    display: flex;
+    gap: 100px;
+    background-color: var(--color_2);
+    padding: 50px;
+    border: solid 2px var(--color_3);
+    border-radius: 10px;
+    overflow: auto;
+}
+
+.contenedor_lista_asientos > div > div{
+    display: flex;
+    gap: 20px;
+}
+
+.sillas{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sillas > div{
+    width: 100px;
+    min-height: 100px;
+    background-color: var(--color_3);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.sillas > div:hover{
+    filter: var(--sombra_1);
+}
+
+/* Pruebas */
+.sillas > div .seleccionada{
+    background-color: red;
+}
+
+
+.contenedor_lista_asientos > button{
+    font-size: 25px;
+    color: white;
+    background-color: var(--color_1);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.contenedor_lista_asientos > button:hover{
+    filter: var(--sombra_1);
+}

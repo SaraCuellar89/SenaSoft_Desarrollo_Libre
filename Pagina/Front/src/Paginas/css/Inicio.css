@@ -1,0 +1,8 @@
+.contenedor_inicio{
+    width: 100%;
+    height: fit-content;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+}

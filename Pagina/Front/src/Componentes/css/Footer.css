@@ -1,0 +1,33 @@
+.contenedor_footer{
+    margin-top: 20vh;
+    height: 20vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    border-top: solid 1px black;
+}
+
+.contenedor_footer >:first-child{
+    display: flex;
+    gap: 20px;
+}
+
+.contenedor_footer >:first-child > h1{
+    font-weight: 500;
+    font-size: 70px;
+    color: var(--color_3);
+}
+
+.contenedor_footer >:first-child > img{
+    width: 100px;
+}
+
+.contenedor_footer >:last-child{
+    display: flex;
+    gap: 20px;
+}
+
+.contenedor_footer >:last-child > a > img{
+    width: 50px;
+}

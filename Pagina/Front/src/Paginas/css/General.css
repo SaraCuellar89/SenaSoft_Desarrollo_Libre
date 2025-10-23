@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    color: black;
+}
+
+:root{
+    --color_1: #C71E64;
+    --color_2: #EAEAEA;
+    --color_3: #8C8C8C;
+
+    --sombra_1: drop-shadow(0px 5px 1px rgb(0, 0, 0, 0.3));
+}
+
+body{
+    font-family: "Jua", sans-serif;
+}

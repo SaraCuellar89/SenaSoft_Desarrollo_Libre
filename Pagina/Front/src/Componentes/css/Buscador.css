@@ -1,0 +1,89 @@
+.contenedor_buscador{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.contenedor_buscador > :nth-child(1){
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.contenedor_buscador > :nth-child(1) > input{
+    width: 100%;
+    padding: 5px;
+    font-size: 25px;
+    border-radius: 5px;
+    border: solid 2px var(--color_3);
+    outline: none;
+}
+
+.contenedor_buscador > :nth-child(1) > button{
+    font-size: 25px;
+    color: white;
+    background-color: var(--color_1);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.contenedor_buscador > :nth-child(1) > button:hover{
+    filter: var(--sombra_1);
+}
+
+.contenedor_buscador > :nth-child(2){
+    background-color: var(--color_2);
+    height: fit-content;
+    max-height: 50vh;
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    overflow: auto;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.contenedor_buscador > :nth-child(2) > a{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    gap: 5px;
+    padding: 10px;
+    border: solid 2px var(--color_3);
+    border-radius: 10px;
+    filter: var(--sombra_1);  
+    
+    font-weight: 500;
+}
+
+.contenedor_buscador > :nth-child(2) > a > img{
+    width: 250px;
+    border-radius: 10px;
+}
+
+.contenedor_buscador > :nth-child(2) > a > div{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.contenedor_buscador > a{
+    width: 80%;
+    text-align: end;
+    font-size: 30px;
+}
+
